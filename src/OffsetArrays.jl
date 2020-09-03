@@ -223,8 +223,12 @@ Base.show(io::IO, ::MIME"text/plain", r::OffsetRange) = show(io, r)
 
 Base.resize!(A::OffsetVector, nl::Integer) = (resize!(A.parent, nl); A)
 Base.push!(A::OffsetVector, x...) = (push!(A.parent, x...); A)
+Base.pushfirst!(A::OffsetVector, x...) = (pushfirst!(A.parent, x...); A)
 Base.pop!(A::OffsetVector) = pop!(A.parent)
+Base.popfirst!(A::OffsetVector) = popfirst!(A.parent)
 Base.empty!(A::OffsetVector) = (empty!(A.parent); A)
+Base.prepend!(A::OffsetVector, items) = (prepend!(A.parent, items); A)
+Base.append!(A::OffsetVector, items) = (append!(A.parent, items); A)
 
 function Base.insert!(A::OffsetVector, i::Integer, item)
     insert!(A.parent, parentindex(Base.axes1(A), i), item)
